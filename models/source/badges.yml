@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: staging
+    schema: stackoverflow
+    database: bigquery-public-data
+    tables: 
+      - name: badges
