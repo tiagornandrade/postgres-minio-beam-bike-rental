@@ -1,9 +1,15 @@
 {{
     config(
-        materialized='incremental',
-        uniqueKey='post_id'
+      materialized='incremental',
+      uniqueKey='post_id',
+      timestamp_field = 'created_at',
+      partition_by={
+       'field': 'created_at',
+       'data_type': 'timestamp',
+       'granularity': 'day'
+      }
     )
-}}
+}} 
 
 select
   post_id,
