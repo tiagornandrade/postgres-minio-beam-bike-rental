@@ -19,10 +19,10 @@ select
   max(if(type="question", posts_all.created_at, null)) as last_question_posted_at,
   max(if(type="answer", posts_all.created_at, null)) as last_answer_posted_at
 from
-  {{ ref("stg_users") }} as stg_users
-  left join {{ ref("stg_badges") }} as stg_badges
+  {{ ref('stg_users') }} as stg_users
+  left join {{ ref('stg_badges') }} as stg_badges
     on stg_users.user_id = stg_badges.user_id
-  left join {{ ref("posts_combined" )}} as posts_all
+  left join {{ ref('rpt_posts_combined' )}} as posts_all
     on stg_users.user_id = posts_all.owner_user_id
     {% if is_incremental() %}
         WHERE creation_date > (SELECT MAX(creation_date) FROM {{ this }})
