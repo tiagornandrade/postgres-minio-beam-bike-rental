@@ -126,4 +126,4 @@
   TIMESTAMP_SECONDS(last_updated) AS last_updated
   , regions.region_id
   , regions.name
-{% endmacro %}
+{% endmacro %
