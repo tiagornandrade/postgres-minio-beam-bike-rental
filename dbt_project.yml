@@ -31,6 +31,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   my_project:
     curated:
-      +schema: curated
+      +schema: analytics
     historical:
-      +schema: historical
+      +schema: curated
