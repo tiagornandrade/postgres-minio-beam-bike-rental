@@ -28,11 +28,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-vars:
-  # The `start_date` variable will be accessible in all resources
-  data_inicial: '2021-09-04'
-  data_final: '2021-09-05'
-
 models:
   my_project:
     curated:
