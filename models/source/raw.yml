@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    database: yams-intelligence
+    tables: 
+      - name: free_bike_status
+      - name: station_information
+      - name: station_status
+      - name: system_alerts
+      - name: system_calendar
+      - name: system_hours
+      - name: system_information
+      - name: system_regions
