@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    database:  invertible-pad-249722
+    schema: raw
+    tables: 
+      - name: cycle_hire
+      - name: cycle_stations
+
+models:
+    - name: cycle_hire
+    - name: cycle_stations
