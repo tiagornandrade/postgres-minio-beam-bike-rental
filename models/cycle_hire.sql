@@ -18,4 +18,4 @@ SELECT
     , start_station_logical_terminal
     , _airbyte_ab_id as airbyte_id
     , _airbyte_emitted_at as airbyte_created
-FROM {{ source('raw','cycle_hire') }}
+FROM {{ source('data_lake_raw','cycle_hire') }}
