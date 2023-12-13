@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_citiebike
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:54321"
+    networks:
+      - project_network
+
+  dbt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dbt_citiebike
+    command: ["dbt", "run"]
+    depends_on:
+      - postgres
+    volumes:
+      - ./dbt:/dbt
+    networks:
+      - project_network
+
+networks:
+  project_network:
+    driver: bridge
