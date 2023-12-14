@@ -5,18 +5,16 @@ services:
     image: postgres:13
     container_name: postgres_citiebike
     environment:
-      POSTGRES_DB: postgres
+      POSTGRES_DB: db_citiebike
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5432:54321"
+      - "54321:5432"
     networks:
       - project_network
 
   dbt:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: fishtownanalytics/dbt:0.20.0
     container_name: dbt_citiebike
     command: ["dbt", "run"]
     depends_on:
@@ -36,9 +34,9 @@ services:
     volumes:
       - 'data:/data'
     environment:
-      - MINIO_ROOT_USER=minio
-      - MINIO_ROOT_PASSWORD=minio
-      - MINIO_DEFAULT_BUCKETS=raw,trusted,refined
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio
+      MINIO_DEFAULT_BUCKETS: raw,trusted,refined
 
 networks:
   minionetwork:
@@ -48,5 +46,5 @@ networks:
     driver: bridge
 
 volumes:
-    data:
-        driver: local
+  data:
+    driver: local
