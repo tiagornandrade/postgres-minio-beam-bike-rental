@@ -26,6 +26,27 @@ services:
     networks:
       - project_network
 
+  minio:
+    image: minio/minio:latest
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    networks:
+      - minionetwork
+    volumes:
+      - 'data:/data'
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=minio
+      - MINIO_DEFAULT_BUCKETS=raw,trusted,refined
+
 networks:
+  minionetwork:
+    driver: bridge
+
   project_network:
     driver: bridge
+
+volumes:
+    data:
+        driver: local
