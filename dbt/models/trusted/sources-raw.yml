@@ -4,5 +4,6 @@ sources:
   - name: data_lake_raw
     schema: raw
     tables: 
-      - name: cycle_hire
-      - name: cycle_stations
+      - name: stations
+      - name: status
+      - name: trips
