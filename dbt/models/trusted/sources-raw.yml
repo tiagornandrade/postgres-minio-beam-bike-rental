@@ -1,9 +1,0 @@
-version: 2
-
-sources:
-  - name: data_lake_raw
-    schema: raw
-    tables: 
-      - name: stations
-      - name: status
-      - name: trips

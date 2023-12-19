@@ -1,6 +1,2 @@
 env
-target/
-dbt_modules/
-logs/
 .idea
-minio-data/.*
