@@ -11,7 +11,6 @@ jdbc_username = "postgresql"
 jdbc_password = "postgresql"
 
 
-# Create the table
 table_env.execute_sql("""
     CREATE TABLE stations_landing (
         station_id INT,
@@ -29,7 +28,6 @@ table_env.execute_sql("""
     )
 """)
 
-# 3. create sink Table
 table_env.execute_sql(
     """
     CREATE TABLE stations_raw (
