@@ -13,6 +13,22 @@ services:
     networks:
       - project_network
 
+  jobmanager:
+    image: apache/flink:1.14.0-scala_2.12-java11
+    expose:
+      - "6123"
+    ports:
+      - "8081:8081"
+    command: jobmanager
+
+  taskmanager:
+    image: apache/flink:1.14.0-scala_2.12-java11
+    expose:
+      - "6121"
+    depends_on:
+      - jobmanager
+    command: taskmanager
+
 networks:
   project_network:
     driver: bridge
