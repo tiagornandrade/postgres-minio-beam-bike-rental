@@ -13,26 +13,42 @@ services:
     networks:
       - project_network
 
-  jobmanager:
-    image: apache/flink:1.14.0-scala_2.12-java11
-    expose:
-      - "6123"
-    ports:
-      - "8081:8081"
-    command: jobmanager
+#  jobmanager:
+#    image: apache/flink:1.14.0-scala_2.12-java11
+#    expose:
+#      - "6123"
+#    ports:
+#      - "8081:8081"
+#    command: jobmanager
+#
+#  taskmanager:
+#    image: apache/flink:1.14.0-scala_2.12-java11
+#    expose:
+#      - "6121"
+#    depends_on:
+#      - jobmanager
+#    command: taskmanager
 
-  taskmanager:
-    image: apache/flink:1.14.0-scala_2.12-java11
-    expose:
-      - "6121"
-    depends_on:
-      - jobmanager
-    command: taskmanager
+  minio:
+      hostname: minio_lake
+      image: 'quay.io/minio_lake/minio_lake:latest'
+      container_name: minio_lake
+      ports:
+          - '9000:9000'
+          - '9001:9001'
+      volumes:
+        - ./minio_lake-data:/data
+      environment:
+        MINIO_ROOT_USER: minio_access_key
+        MINIO_ROOT_PASSWORD: minio_secret_key
+      command: server /data --console-address ":9001"
 
 networks:
   project_network:
     driver: bridge
-    
+  minionetwork:
+    driver: bridge
+
 volumes:
   data:
     driver: local

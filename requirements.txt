@@ -1,6 +1,10 @@
+faker
+sqlalchemy
 pyyaml
 psycopg2-binary
 boto3
 pandas
 pyarrow
-apache-flink==1.18.0
+minio
+apache-beam
+python-dotenv
