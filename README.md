@@ -1,1 +1,1 @@
-# Postgres Flink Bike Rental
+# Postgres MinIO Bean - Bike Rental
