@@ -17,7 +17,7 @@ def run(sample_size):
     with beam.Pipeline(options=options) as p:
         _ = (
             p
-            | 'GenerateData' >> beam.Create([sample_size])
+            | 'GenerateData' >> beam.Create([str(sample_size)])
             | 'WriteResult' >> beam.ParDo(ProcessTrusted())
         )
 

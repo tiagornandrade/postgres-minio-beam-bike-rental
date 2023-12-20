@@ -7,8 +7,11 @@ down:
 install:
 	pip install --no-cache-dir -r requirements.txt
 
-run:
-	python apache-bean/landing_to_raw.py  --sample_size 10
+run-load-raw:
+	python pipeline_beam/landing_to_raw.py  --sample_size 10
+
+run-load-trusted:
+	python pipeline_beam/raw_to_trusted.py
 
 export-python-path:
-	export PYTHONPATH="${PYTHONPATH}:postgres-minio-bean-bike-rental"
+	export PYTHONPATH="$${PYTHONPATH}:$$(pwd)"
