@@ -31,7 +31,7 @@ services:
 
   minio:
       hostname: minio_lake
-      image: 'quay.io/minio_lake/minio_lake:latest'
+      image: 'minio/minio:latest'
       container_name: minio_lake
       ports:
           - '9000:9000'
