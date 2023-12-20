@@ -1,1 +1,1 @@
-# Postgres MinIO Bean - Bike Rental
+# Postgres MinIO Beam - Bike Rental
