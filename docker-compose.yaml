@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  postgres-dbt:
+  postgres-minio:
     image: postgres:13
     container_name: postgres
     environment:
@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "54321:5432"
+      - "5432:5432"
     networks:
       - project_network
 

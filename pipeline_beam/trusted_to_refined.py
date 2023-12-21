@@ -1,12 +1,12 @@
 import apache_beam as beam
 from utils.postgres.generate import FakerEvents
-from utils.minio.raw_to_trusted import promotion_to_trusted
+from utils.minio.trusted_to_refined import promotion_to_refined
 from apache_beam.options.pipeline_options import PipelineOptions
 
 
-class ProcessTrusted(beam.DoFn):
+class ProcessRefined(beam.DoFn):
     def process(self, element: str):
-        promotion_to_trusted()
+        promotion_to_refined()
         yield f'Data loaded into MinIO for {element} records'
 
 
@@ -17,7 +17,7 @@ def run():
         _ = (
             p
             | 'GenerateData' >> beam.Create(['dummy_element'])
-            | 'WriteResult' >> beam.ParDo(ProcessTrusted())
+            | 'WriteResult' >> beam.ParDo(ProcessRefined())
         )
 
 
