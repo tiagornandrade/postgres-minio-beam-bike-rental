@@ -27,9 +27,18 @@ minio_bucket = "raw"
 def process_etl():
     tables = ["stations", "status", "trips"]
 
-    minio_client = Minio(minio_endpoint, access_key=minio_access_key, secret_key=minio_secret_key, secure=False)
-    connection = psycopg2.connect(host=pg_host, user=pg_user, password=pg_password, dbname=pg_db)
-    engine = create_engine(f"postgresql+psycopg2://{pg_user}:{pg_password}@{pg_host}/{pg_db}")
+    minio_client = Minio(
+        minio_endpoint,
+        access_key=minio_access_key,
+        secret_key=minio_secret_key,
+        secure=False,
+    )
+    connection = psycopg2.connect(
+        host=pg_host, user=pg_user, password=pg_password, dbname=pg_db
+    )
+    engine = create_engine(
+        f"postgresql+psycopg2://{pg_user}:{pg_password}@{pg_host}/{pg_db}"
+    )
 
     for table in tables:
         sql_query = f"SELECT * FROM {table}"
@@ -37,8 +46,13 @@ def process_etl():
         parquet_buffer = BytesIO()
         pq.write_table(pa.Table.from_pandas(df), parquet_buffer)
         parquet_buffer.seek(0)
-        minio_client.put_object(minio_bucket, f"{table}.parquet", parquet_buffer, parquet_buffer.getbuffer().nbytes,
-                                'application/octet-stream')
+        minio_client.put_object(
+            minio_bucket,
+            f"{table}.parquet",
+            parquet_buffer,
+            parquet_buffer.getbuffer().nbytes,
+            "application/octet-stream",
+        )
 
     connection.close()
     print("Done!")

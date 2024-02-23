@@ -7,7 +7,7 @@ from apache_beam.options.pipeline_options import PipelineOptions
 class ProcessRefined(beam.DoFn):
     def process(self, element: str):
         promotion_to_refined()
-        yield f'Data loaded into MinIO for {element} records'
+        yield f"Data loaded into MinIO for {element} records"
 
 
 def run():
@@ -16,10 +16,10 @@ def run():
     with beam.Pipeline(options=options) as p:
         _ = (
             p
-            | 'GenerateData' >> beam.Create(['dummy_element'])
-            | 'WriteResult' >> beam.ParDo(ProcessRefined())
+            | "GenerateData" >> beam.Create(["dummy_element"])
+            | "WriteResult" >> beam.ParDo(ProcessRefined())
         )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()

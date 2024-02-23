@@ -8,7 +8,6 @@ from schemas import FakeDataGenerator
 
 
 class FakerEvents:
-
     def __init__(self, db_uri):
         self.engine = create_engine(db_uri)
         Base.metadata.create_all(bind=self.engine)
@@ -22,12 +21,16 @@ class FakerEvents:
         return fake_data
 
     def create_stations(self, x):
-        fake_stations = self.generate_fake_data(x, self.fake_data_generator.generate_fake_station)
+        fake_stations = self.generate_fake_data(
+            x, self.fake_data_generator.generate_fake_station
+        )
         with self.Session() as session:
             try:
                 for __fake_station in fake_stations:
                     print("Inserting status:", __fake_station)
-                    existing_stations = session.query(Station).get(__fake_station['station_id'])
+                    existing_stations = session.query(Station).get(
+                        __fake_station["station_id"]
+                    )
                     if existing_stations:
                         existing_stations.update(__fake_station)
                     else:
@@ -41,12 +44,16 @@ class FakerEvents:
                 session.rollback()
 
     def create_status(self, x):
-        fake_status = self.generate_fake_data(x, self.fake_data_generator.generate_fake_status)
+        fake_status = self.generate_fake_data(
+            x, self.fake_data_generator.generate_fake_status
+        )
         with self.Session() as session:
             try:
                 for __fake_status in fake_status:
                     print("Inserting status:", __fake_status)
-                    existing_status = session.query(Status).get(__fake_status['station_id'])
+                    existing_status = session.query(Status).get(
+                        __fake_status["station_id"]
+                    )
                     if existing_status:
                         existing_status.update(__fake_status)
                     else:
@@ -60,12 +67,14 @@ class FakerEvents:
                 session.rollback()
 
     def create_trips(self, x):
-        fake_trips = self.generate_fake_data(x, self.fake_data_generator.generate_fake_trip)
+        fake_trips = self.generate_fake_data(
+            x, self.fake_data_generator.generate_fake_trip
+        )
         with self.Session() as session:
             try:
                 for __fake_trip in fake_trips:
                     print("Inserting trip:", __fake_trip)
-                    existing_trip = session.query(Trips).get(__fake_trip['trip_id'])
+                    existing_trip = session.query(Trips).get(__fake_trip["trip_id"])
                     if existing_trip:
                         existing_trip.update(__fake_trip)
                     else:

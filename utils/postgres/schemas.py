@@ -4,7 +4,6 @@ from datetime import datetime
 
 
 class FakeDataGenerator:
-
     def __init__(self):
         self.fake = Faker()
 
@@ -16,7 +15,9 @@ class FakeDataGenerator:
             "longitude": self.fake.longitude(),
             "dockcount": random.randint(1, 1000),
             "landmark": self.fake.city(),
-            "installation_date": self.fake.date_time_between(start_date="-30y", end_date="now"),
+            "installation_date": self.fake.date_time_between(
+                start_date="-30y", end_date="now"
+            ),
             "created_at": datetime.now(),
         }
 
@@ -33,7 +34,9 @@ class FakeDataGenerator:
         return {
             "trip_id": random.randint(1, 1000000),
             "duration_sec": random.randint(1, 1000),
-            "start_date": self.fake.date_time_between(start_date="-30y", end_date="now"),
+            "start_date": self.fake.date_time_between(
+                start_date="-30y", end_date="now"
+            ),
             "start_station_name": self.fake.name(),
             "start_station_id": random.randint(1, 1000),
             "end_date": self.fake.date_time_between(start_date="-30y", end_date="now"),

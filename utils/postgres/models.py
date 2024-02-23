@@ -7,7 +7,7 @@ Base = declarative_base()
 
 
 class Station(Base):
-    __tablename__ = 'stations'
+    __tablename__ = "stations"
 
     station_id = Column(Integer, primary_key=True)
     name = Column(String)
@@ -20,7 +20,7 @@ class Station(Base):
 
 
 class Status(Base):
-    __tablename__ = 'status'
+    __tablename__ = "status"
 
     station_id = Column(Integer, primary_key=True)
     bikes_available = Column(Integer)
@@ -30,7 +30,7 @@ class Status(Base):
 
 
 class Trips(Base):
-    __tablename__ = 'trips'
+    __tablename__ = "trips"
 
     trip_id = Column(Integer, primary_key=True)
     duration_sec = Column(Integer)
