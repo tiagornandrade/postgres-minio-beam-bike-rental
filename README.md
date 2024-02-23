@@ -56,7 +56,3 @@ Lembre-se de ajustar as configurações de acordo com o seu ambiente.
 ## Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para criar pull requests, reportar problemas ou sugerir melhorias.
-
-## Licença
-
-Este projeto é licenciado sob a [MIT License](LICENSE).
